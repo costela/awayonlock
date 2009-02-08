@@ -20,7 +20,7 @@
 
 #define PURPLE_PLUGINS
 
-#define AWAYONLOCK_VERSION "0.1"
+#define AWAYONLOCK_VERSION "0.2"
 #define AWAYONLOCK_PLUGIN_ID "core-costela-awayonlock"
 
 #include <stdio.h>
@@ -49,7 +49,7 @@ static void awayonlock_idle_changed_callback(DBusGProxy *proxy, gboolean screens
 	PurpleSavedStatus *status_current = purple_savedstatus_get_current();
 	PurpleStatusPrimitive status_type = purple_savedstatus_get_type(status_current);
 
-	if(screensaver_status && (status_type != PURPLE_STATUS_OFFLINE && status_type != PURPLE_STATUS_INVISIBLE)) {
+	if(screensaver_status && (status_type != PURPLE_STATUS_OFFLINE && status_type != PURPLE_STATUS_INVISIBLE) && ! purple_savedstatus_is_idleaway()) {
 		status_saved = status_current;
 		purple_debug(PURPLE_DEBUG_INFO, PACKAGE, N_("setting status as away and storing '%s'\n"), purple_savedstatus_get_title(status_saved));
 		purple_savedstatus_activate(status_idle);
