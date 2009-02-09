@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-01-31 22:10+0100\n"
+"POT-Creation-Date: 2009-02-09 18:09+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,10 +16,28 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: awayonlock.c:88
+#: awayonlock.c:125
+msgid "Away-on-lock"
+msgstr ""
+
+#: awayonlock.c:62
 msgid "Failed to create a DBus Proxy."
 msgstr ""
 
-#: awayonlock.c:76
+#: awayonlock.c:50
 msgid "Failed to get a DBus connection."
+msgstr ""
+
+#: awayonlock.c:128
+msgid "Leo Antunes <leo@costela.net>"
+msgstr ""
+
+#: awayonlock.c:126
+msgid "Sets you as away when your screensaver is activated"
+msgstr ""
+
+#: awayonlock.c:127
+msgid ""
+"This plugin sets your status to the default away status whenever your "
+"screensaver gets activated."
 msgstr ""

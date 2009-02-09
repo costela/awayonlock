@@ -18,20 +18,12 @@
 
 */
 
-#ifndef _AWAYONLOCK_I18N_H
-#define _AWAYONLOCK_I18N_H
+#ifndef _AWAYONLOCK_CALLBACK_H
+#define _AWAYONLOCK_CALLBACK_H
 
-#ifdef ENABLE_NLS
-#	include <libintl.h>
-#	include <locale.h>
-#	define _(String) ((const char *)dgettext(PACKAGE, String))
-#	define gettext_noop(String) String
-#	define N_(String) gettext_noop (String)
-#else
-#	define _(String) (String)
-#	define N_(String) String
-#	define textdomain(Domain)
-#	define bindtextdomain(Package, Directory)
-#endif
+#include <glib.h>
+#include <dbus/dbus-glib.h>
+
+void awayonlock_idle_changed_callback(DBusGProxy *, gboolean , gpointer);
 
 #endif

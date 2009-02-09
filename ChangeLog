@@ -1,3 +1,9 @@
+Version 0.2 (2009-??-??):
+
+	- solved problem when the auto-away feature got activated before the screensaver
+	- added pref to select which away status should be set by the screensaver
+	- plugin info finally translateable	
+
 Version 0.1 (2009-01-31):
 
 	- initial working version
