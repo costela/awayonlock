@@ -24,7 +24,7 @@
 #ifdef ENABLE_NLS
 #	include <libintl.h>
 #	include <locale.h>
-#	define _(String) ((const char *)dgettext(PACKAGE, String))
+#	define _(String) dgettext(PACKAGE, String)
 #	define gettext_noop(String) String
 #	define N_(String) gettext_noop (String)
 #else

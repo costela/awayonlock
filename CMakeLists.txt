@@ -20,7 +20,10 @@ pkg_check_modules( DBUS_GLIB REQUIRED dbus-glib-1 )
 include_directories(${DBUS_GLIB_INCLUDE_DIRS})
 
 find_package(Gettext)
-add_subdirectory(i18n)
+if(GETTEXT_FOUND)
+	add_definitions(-DENABLE_NLS)
+	add_subdirectory(i18n)
+endif()
 
 include(FeatureSummary)
 print_enabled_features()
