@@ -7,7 +7,7 @@ add_definitions(-DPACKAGE="${CMAKE_PROJECT_NAME}" -DLOCALEDIR=NULL)
 
 set(CMAKE_C_FLAGS_DEBUG "-O0 -ggdb -Wall" CACHE STRING "" FORCE)
 
-add_library(awayonlock SHARED awayonlock.c callback.c)
+add_library(awayonlock SHARED awayonlock.c callback.c prefs.c)
 install(TARGETS awayonlock LIBRARY DESTINATION lib/pidgin NAMELINK_SKIP)
 
 find_package( PkgConfig REQUIRED )

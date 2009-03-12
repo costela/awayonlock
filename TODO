@@ -1,1 +1,1 @@
-- add preference: select specific away state instead of default
+- add callback to status management, to remove our pref if it's removed in purple

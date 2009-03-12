@@ -33,6 +33,7 @@
 
 #include "i18n.h"
 #include "callback.h"
+#include "prefs.h"
 
 static DBusGConnection *dbus_conn = NULL;
 
@@ -47,6 +48,7 @@ static gboolean plugin_load(PurplePlugin *plugin) {
 	dbus_conn = dbus_g_bus_get(DBUS_BUS_SESSION, &error);
 	
 	if(dbus_conn == NULL) { 
+		purple_debug(PURPLE_DEBUG_ERROR, PACKAGE, N_("failed to get DBus connection\n"));
 		purple_notify_error(plugin, "Away-on-lock", _("Failed to get a DBus connection."), g_strdup_printf("DBus error: %s\n",error->message));
 		return FALSE;
 	}
@@ -59,7 +61,9 @@ static gboolean plugin_load(PurplePlugin *plugin) {
 			);
 
 	if(dbus_proxy == NULL) {
+		purple_debug(PURPLE_DEBUG_ERROR, PACKAGE, N_("failed to get DBus proxy\n"));
 		purple_notify_error(plugin, "Away-on-lock", _("Failed to create a DBus Proxy."), NULL);
+
 		return FALSE;
 	}
 
@@ -112,7 +116,7 @@ static PurplePluginInfo info = {
 
 	NULL,
 	NULL,
-	NULL,
+	&prefs,
 	NULL,
 	NULL,
 	NULL,
@@ -128,6 +132,9 @@ static void init_plugin(PurplePlugin *plugin)
 	info.summary = _("Sets you as away when your screensaver is activated");
 	info.description = _("This plugin sets your status to the default away status whenever your screensaver gets activated.");
 	info.author = _("Leo Antunes <leo@costela.net>");
+
+	purple_prefs_add_none("/plugins/core/awayonlock");
+	purple_prefs_add_string("/plugins/core/awayonlock/status", NULL);
 }
 
 PURPLE_INIT_PLUGIN(awayonlock, init_plugin, info);
