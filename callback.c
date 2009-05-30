@@ -35,9 +35,8 @@ void awayonlock_idle_changed_callback(DBusGProxy *proxy, gboolean screensaver_st
 	PurpleSavedStatus *status_idle = purple_savedstatus_get_idleaway();
 
 	PurpleSavedStatus *status_current = purple_savedstatus_get_current();
-	PurpleStatusPrimitive status_type = purple_savedstatus_get_type(status_current);
 
-	if(screensaver_status && (status_type != PURPLE_STATUS_OFFLINE && status_type != PURPLE_STATUS_INVISIBLE) && ! purple_savedstatus_is_idleaway()) {
+	if(screensaver_status && (purple_savedstatus_get_type(status_current) != PURPLE_STATUS_OFFLINE && purple_savedstatus_get_type(status_current) != PURPLE_STATUS_INVISIBLE) && ! purple_savedstatus_is_idleaway()) {
 		status_saved = status_current;
 		purple_debug(PURPLE_DEBUG_INFO, PACKAGE, N_("setting status as away and storing '%s'\n"), purple_savedstatus_get_title(status_saved));
 		purple_savedstatus_activate(status_idle);
