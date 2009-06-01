@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-09 18:09+0100\n"
+"POT-Creation-Date: 2009-06-01 22:51+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,28 +16,36 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: awayonlock.c:125
-msgid "Away-on-lock"
-msgstr ""
-
-#: awayonlock.c:62
-msgid "Failed to create a DBus Proxy."
-msgstr ""
-
-#: awayonlock.c:50
+#: awayonlock.c:61
 msgid "Failed to get a DBus connection."
 msgstr ""
 
-#: awayonlock.c:128
-msgid "Leo Antunes <leo@costela.net>"
+#: awayonlock.c:77
+msgid "Failed to create a DBus Proxy."
 msgstr ""
 
-#: awayonlock.c:126
+#: awayonlock.c:157
+msgid "Away-on-lock"
+msgstr ""
+
+#: awayonlock.c:158
 msgid "Sets you as away when your screensaver is activated"
 msgstr ""
 
-#: awayonlock.c:127
+#: awayonlock.c:159
 msgid ""
 "This plugin sets your status to the default away status whenever your "
 "screensaver gets activated."
+msgstr ""
+
+#: awayonlock.c:160
+msgid "Leo Antunes <leo@costela.net>"
+msgstr ""
+
+#: prefs.c:42
+msgid "Status to set on screensaver activation"
+msgstr ""
+
+#: prefs.c:44
+msgid "Default away status"
 msgstr ""

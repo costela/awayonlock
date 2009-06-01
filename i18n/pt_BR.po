@@ -1,10 +1,19 @@
+# #-#-#-#-#  pidgin-awayonlock.pot (PACKAGE VERSION)  #-#-#-#-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+# #-#-#-#-#  pt_BR.po (PACKAGE VERSION)  #-#-#-#-#
 # Portuguese translations for PACKAGE package.
 # Copyright (C) 2009 THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 #  <leo@costela.net>, 2009.
 #
+#, fuzzy
 msgid ""
 msgstr ""
+"#-#-#-#-#  pt_BR.po (PACKAGE VERSION)  #-#-#-#-#\n"
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-02-09 17:58+0100\n"
@@ -16,20 +25,16 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: awayonlock.c:125
-msgid "Away-on-lock"
-msgstr ""
+#: awayonlock.c:50
+msgid "Failed to get a DBus connection."
+msgstr "Falha ao conseguir uma conexão DBus"
 
 #: awayonlock.c:62
 msgid "Failed to create a DBus Proxy."
 msgstr "Falha ao criar um Proxy DBus"
 
-#: awayonlock.c:50
-msgid "Failed to get a DBus connection."
-msgstr "Falha ao conseguir uma conexão DBus"
-
-#: awayonlock.c:128
-msgid "Leo Antunes <leo@costela.net>"
+#: awayonlock.c:157 awayonlock.c:125
+msgid "Away-on-lock"
 msgstr ""
 
 #: awayonlock.c:126
@@ -40,4 +45,18 @@ msgstr "Define status como ausente quando o salva-tela é ativado"
 msgid ""
 "This plugin sets your status to the default away status whenever your "
 "screensaver gets activated."
-msgstr "Este plugin define o status atual como o status ausente padrão quando o salva-tela é ativado"
+msgstr ""
+"Este plugin define o status atual como o status ausente padrão quando o "
+"salva-tela é ativado"
+
+#: awayonlock.c:160 awayonlock.c:128
+msgid "Leo Antunes <leo@costela.net>"
+msgstr ""
+
+#: prefs.c:42
+msgid "Status to set on screensaver activation"
+msgstr "Status para usar quando o salva-tela for ativado"
+
+#: prefs.c:44
+msgid "Default away status"
+msgstr "Status ausente padrão"
