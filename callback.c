@@ -26,13 +26,23 @@
 
 #include "i18n.h"
 #include "callback.h"
+#include "prefs.h"
 
 static PurpleSavedStatus *status_saved = NULL;
 
 void awayonlock_idle_changed_callback(DBusGProxy *proxy, gboolean screensaver_status, gpointer data) {
 	purple_debug(PURPLE_DEBUG_INFO, PACKAGE, N_("got message from screensaver: active=%u\n"), screensaver_status);
 
-	PurpleSavedStatus *status_idle = purple_savedstatus_get_idleaway();
+	PurpleSavedStatus *status_idle;
+
+	const char *awayonlock_savedstatus = purple_prefs_get_string(AWAYONLOCK_PREF_STATUS);
+	if(g_strcmp0(awayonlock_savedstatus, "") == 0) {
+		status_idle = purple_savedstatus_get_idleaway();
+	}
+	else {
+		status_idle = purple_savedstatus_find_by_creation_time(g_ascii_strtoull(awayonlock_savedstatus,NULL,10));
+	}
+
 
 	PurpleSavedStatus *status_current = purple_savedstatus_get_current();
 

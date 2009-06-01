@@ -30,12 +30,21 @@
 #include <plugin.h>
 #include <version.h>
 #include <notify.h>
+#include <savedstatuses.h>
 
 #include "i18n.h"
 #include "callback.h"
 #include "prefs.h"
 
 static DBusGConnection *dbus_conn = NULL;
+
+void *
+awayonlock_get_handle(void)
+{
+	static char* handle = "awayonlock";
+	return handle;
+}
+
 
 static gboolean plugin_load(PurplePlugin *plugin) {
 	DBusGProxy *dbus_proxy = NULL;
@@ -54,6 +63,9 @@ static gboolean plugin_load(PurplePlugin *plugin) {
 	}
 	
 
+	/*
+	 * Gnome-screensaver specific stuff
+	 */
 	dbus_proxy = dbus_g_proxy_new_for_name( dbus_conn,
 			"org.gnome.ScreenSaver",
 			"/org/gnome/ScreenSaver",
@@ -72,13 +84,26 @@ static gboolean plugin_load(PurplePlugin *plugin) {
 			G_TYPE_BOOLEAN,
 			G_TYPE_INVALID
 			);
-	
+
 	dbus_g_proxy_connect_signal( dbus_proxy,
 			"SessionIdleChanged",
 			G_CALLBACK(awayonlock_idle_changed_callback),
 			NULL,
 			NULL
 			);
+	/*
+	 * END Gnome-screensaver specific stuff
+	 */
+
+
+	/*
+	 * avoid dangling references to savedstatuses in the config
+	 */
+	purple_signal_connect(purple_savedstatuses_get_handle(), "savedstatus-deleted",
+						awayonlock_get_handle(),
+						PURPLE_CALLBACK(prefs_status_deleted_cb),
+						NULL
+						);
 
 	purple_debug(PURPLE_DEBUG_INFO, PACKAGE, N_("plugin_load finished\n"));
 	return TRUE;
@@ -88,6 +113,7 @@ static gboolean plugin_load(PurplePlugin *plugin) {
 static gboolean plugin_unload(PurplePlugin *plugin) {
 	purple_debug(PURPLE_DEBUG_INFO, PACKAGE, N_("plugin_unload called\n"));
 	dbus_g_connection_unref(dbus_conn);
+	purple_signals_disconnect_by_handle(awayonlock_get_handle());
 	return TRUE;
 }
 

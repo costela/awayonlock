@@ -21,7 +21,15 @@
 #ifndef _AWAYONLOCK_PREFS_H
 #define _AWAYONLOCK_PREFS_H
 
+#include <glib.h>
+#include <plugin.h>
+#include <savedstatuses.h>
+
+#define AWAYONLOCK_PREF_STATUS "/plugins/core/awayonlock/status"
+
 PurplePluginPrefFrame* get_prefs_frame(PurplePlugin*);
+
+void prefs_status_deleted_cb(PurpleSavedStatus*, gpointer);
 
 static PurplePluginUiInfo prefs = {
 	get_prefs_frame,
