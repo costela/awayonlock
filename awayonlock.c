@@ -20,7 +20,7 @@
 
 #define PURPLE_PLUGINS
 
-#define AWAYONLOCK_VERSION "0.2"
+#define AWAYONLOCK_VERSION "0.2.2"
 #define AWAYONLOCK_PLUGIN_ID "core-costela-awayonlock"
 
 #include <dbus/dbus-glib.h>
@@ -80,13 +80,13 @@ static gboolean plugin_load(PurplePlugin *plugin) {
 	}
 
 	dbus_g_proxy_add_signal( dbus_proxy,
-			"SessionIdleChanged",
+			"ActiveChanged",
 			G_TYPE_BOOLEAN,
 			G_TYPE_INVALID
 			);
 
 	dbus_g_proxy_connect_signal( dbus_proxy,
-			"SessionIdleChanged",
+			"ActiveChanged",
 			G_CALLBACK(awayonlock_idle_changed_callback),
 			NULL,
 			NULL
@@ -134,7 +134,7 @@ static PurplePluginInfo info = {
 	0,
 	0,
 	0,
-	N_("http://costela.net/projects/away-on-lock"),
+	N_("http://costela.net/projects/awayonlock"),
 	
 	plugin_load,
 	plugin_unload,

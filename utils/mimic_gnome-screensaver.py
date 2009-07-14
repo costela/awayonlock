@@ -26,8 +26,8 @@ name = BusName(name="org.gnome.ScreenSaver", bus=bus);
 app = gobject.MainLoop()
 
 t = Test('/org/gnome/ScreenSaver')
-gobject.timeout_add(   1, t.SessionIdleChanged, dbus.Boolean(1))
-gobject.timeout_add(2000, t.SessionIdleChanged, dbus.Boolean(0))
+gobject.timeout_add(   1, t.ActiveChanged, dbus.Boolean(1))
+gobject.timeout_add(2000, t.ActiveChanged, dbus.Boolean(0))
 gobject.timeout_add(2001, app.quit)
 
 app.run()
