@@ -1,11 +1,11 @@
-Version 0.3 (??-??-2009):
+Version 0.3 (2009-07-19):
 
-	- add option to activate only if Available
+	- add option to activate only if current status is Available
 
 Version 0.2.2 (2009-07-14):
 
-	- listen to ActiveChange instead of SessionIdleChanged, it's 
-	  been dropped as of gnome-screensaver 2.26.0. (thanks Thomas 
+	- listen to ActiveChange instead of SessionIdleChanged, it's
+	  been dropped as of gnome-screensaver 2.26.0. (thanks Thomas
 	  Krug for the heads-up)
 
 Version 0.2.1 (2009-06-01):
@@ -14,9 +14,9 @@ Version 0.2.1 (2009-06-01):
 
 Version 0.2 (2009-06-01):
 
-	- solved problem when pidgin's auto-away got activated before 
+	- solved problem when pidgin's auto-away got activated before
 	  the screensaver
-	- added pref to select which away status should be set by the 
+	- added pref to select which away status should be set by the
 	  screensaver
 	- plugin info finally translatable
 
