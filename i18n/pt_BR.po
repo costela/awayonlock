@@ -1,21 +1,21 @@
 # #-#-#-#-#  pidgin-awayonlock.pot (PACKAGE VERSION)  #-#-#-#-#
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# pidgin plugin to set as away on screensaver activation.
+# Copyright (C) 2009
+# This file is distributed under the same license as the awayonlock package.
+# Leo Antunes <leo@costela.net>.
 #
 # #-#-#-#-#  pt_BR.po (PACKAGE VERSION)  #-#-#-#-#
-# Portuguese translations for PACKAGE package.
-# Copyright (C) 2009 THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-#  <leo@costela.net>, 2009.
+# Portuguese translations for awayonlock package.
+# Copyright (C) 2009 Leo Antunes <leo@costela.net>
+# This file is distributed under the same license as the awayonlock package.
+# Leo Antunes <leo@costela.net>, 2009.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-06-01 22:51+0200\n"
+"POT-Creation-Date: 2009-07-19 00:16+0200\n"
 "PO-Revision-Date: 2009-01-31 22:13+0100\n"
 "Last-Translator:  <leo@costela.net>\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -25,33 +25,21 @@ msgstr ""
 "#-#-#-#-#  pt_BR.po (PACKAGE VERSION)  #-#-#-#-#\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: awayonlock.c:157
-msgid "Away-on-lock"
-msgstr ""
-
-#: prefs.c:44
-msgid "Default away status"
-msgstr "Status ausente padrão"
+#: awayonlock.c:61
+msgid "Failed to get a DBus connection."
+msgstr "Falha ao conseguir uma conexão DBus"
 
 #: awayonlock.c:77
 msgid "Failed to create a DBus Proxy."
 msgstr "Falha ao criar um Proxy DBus"
 
-#: awayonlock.c:61
-msgid "Failed to get a DBus connection."
-msgstr "Falha ao conseguir uma conexão DBus"
-
-#: awayonlock.c:160
-msgid "Leo Antunes <leo@costela.net>"
+#: awayonlock.c:157
+msgid "Away-on-lock"
 msgstr ""
 
 #: awayonlock.c:158
 msgid "Sets you as away when your screensaver is activated"
 msgstr "Define status como ausente quando o salva-tela é ativado"
-
-#: prefs.c:42
-msgid "Status to set on screensaver activation"
-msgstr "Status para usar quando o salva-tela for ativado"
 
 #: awayonlock.c:159
 msgid ""
@@ -60,3 +48,19 @@ msgid ""
 msgstr ""
 "Este plugin define o status atual como o status ausente padrão quando o "
 "salva-tela é ativado"
+
+#: awayonlock.c:160
+msgid "Leo Antunes <leo@costela.net>"
+msgstr ""
+
+#: prefs.c:42
+msgid "Status to set on screensaver activation"
+msgstr "Status para usar quando o salva-tela for ativado"
+
+#: prefs.c:44
+msgid "Default away status"
+msgstr "Status ausente padrão"
+
+#: prefs.c:65
+msgid "Activate only if available"
+msgstr "Ativar somente quando disponível"

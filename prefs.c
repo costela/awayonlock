@@ -1,17 +1,17 @@
 /*
  awayonlock - plugin to set away status on screensaver activation
  Copyright (C) 2009  Leo Antunes <leo@costela.net>
- 
+
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
  as published by the Free Software Foundation; either version 2
  of the License, or (at your option) any later version.
- 
+
  This program is distributed in the hope that it will be useful,
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  GNU General Public License for more details.
- 
+
  You should have received a copy of the GNU General Public License
  along with this program; if not, write to the Free Software
  Foundation, Inc.
@@ -53,16 +53,17 @@ PurplePluginPrefFrame *get_prefs_frame(PurplePlugin *plugin) {
 			creation_time = g_strdup_printf("%d", purple_savedstatus_get_creation_time(statuses->data));
 			purple_plugin_pref_add_choice(ppref, (gchar *)purple_savedstatus_get_title(statuses->data), creation_time);
 			/*
-			 * FIXME: memleak! how can we free this after the frame has 
-			 * been destroyed? Alternatively, how could we pass a
-			 * pointer to the original creation_time inside the
-			 * PurpleSavedStatus struct?
+			 * FIXME: memleak! how can we free this after the frame has
+			 * been destroyed?
 			 */
 			//g_free(creation_time);
 		}
 	}
 	purple_plugin_pref_frame_add(frame, ppref);
 	g_list_free(statuses);
+
+	ppref = purple_plugin_pref_new_with_name_and_label(AWAYONLOCK_PREF_AVAILABLE_ONLY, _("Activate only if available"));
+	purple_plugin_pref_frame_add(frame, ppref);
 
 	return frame;
 }
