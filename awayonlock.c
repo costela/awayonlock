@@ -20,7 +20,7 @@
 
 #define PURPLE_PLUGINS
 
-#define AWAYONLOCK_VERSION "0.3"
+#define AWAYONLOCK_VERSION "0.4"
 #define AWAYONLOCK_PLUGIN_ID "core-costela-awayonlock"
 
 #include <dbus/dbus-glib.h>
@@ -47,6 +47,7 @@ awayonlock_get_handle(void)
 
 
 static gboolean plugin_load(PurplePlugin *plugin) {
+	DBusGProxy *dbus_proxy_gnome = NULL;
 	DBusGProxy *dbus_proxy = NULL;
 	GError *error = NULL;
 
@@ -64,18 +65,50 @@ static gboolean plugin_load(PurplePlugin *plugin) {
 
 
 	/*
-	 * Gnome-screensaver specific stuff
+	 * Gnome-screensaver 2.26 specific stuff
 	 */
-	dbus_proxy = dbus_g_proxy_new_for_name( dbus_conn,
+	dbus_proxy_gnome = dbus_g_proxy_new_for_name( dbus_conn,
 			"org.gnome.ScreenSaver",
 			"/org/gnome/ScreenSaver",
 			"org.gnome.ScreenSaver"
 			);
 
+	if(dbus_proxy_gnome == NULL) {
+		purple_debug(PURPLE_DEBUG_ERROR, PACKAGE, N_("failed to get DBus proxy\n"));
+		purple_notify_error(plugin, "Away-on-lock", _("Failed to create a DBus Proxy."), NULL);
+		dbus_g_connection_unref(dbus_conn);
+		return FALSE;
+	}
+
+	dbus_g_proxy_add_signal( dbus_proxy_gnome,
+			"ActiveChanged",
+			G_TYPE_BOOLEAN,
+			G_TYPE_INVALID
+			);
+
+	dbus_g_proxy_connect_signal( dbus_proxy_gnome,
+			"ActiveChanged",
+			G_CALLBACK(awayonlock_idle_changed_callback),
+			NULL,
+			NULL
+			);
+	/*
+	 * END Gnome-screensaver specific stuff
+	 */
+
+	/*
+	 * freedesktop stuff
+	 */
+	dbus_proxy = dbus_g_proxy_new_for_name( dbus_conn,
+			"org.freedesktop.ScreenSaver",
+			"/ScreenSaver",
+			"org.freedesktop.ScreenSaver"
+			);
+
 	if(dbus_proxy == NULL) {
 		purple_debug(PURPLE_DEBUG_ERROR, PACKAGE, N_("failed to get DBus proxy\n"));
 		purple_notify_error(plugin, "Away-on-lock", _("Failed to create a DBus Proxy."), NULL);
-
+		dbus_g_connection_unref(dbus_conn);
 		return FALSE;
 	}
 
@@ -92,7 +125,7 @@ static gboolean plugin_load(PurplePlugin *plugin) {
 			NULL
 			);
 	/*
-	 * END Gnome-screensaver specific stuff
+	 * END freedesktop stuff
 	 */
 
 
@@ -155,8 +188,8 @@ static void init_plugin(PurplePlugin *plugin)
 	bindtextdomain(PACKAGE, LOCALEDIR);
 
 	info.name = _("Away-on-lock");
-	info.summary = _("Sets you as away when your screensaver is activated");
-	info.description = _("This plugin sets your status to the default away status whenever your screensaver gets activated.");
+	info.summary = _("Changes your status when your screensaver gets activated");
+	info.description = _("This plugin changes your status to a preselected saved status or the default away status whenever your screensaver gets activated. It doesn't interfere if you're already marked as auto-away and can also avoid changing your status if you've manually marked yourself as any non-available status.");
 	info.author = _("Leo Antunes <leo@costela.net>");
 
 	purple_prefs_add_none(AWAYONLOCK_PREF_ROOT);

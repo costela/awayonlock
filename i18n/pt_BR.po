@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-07-19 00:16+0200\n"
+"POT-Creation-Date: 2009-07-22 23:19+0200\n"
 "PO-Revision-Date: 2009-01-31 22:13+0100\n"
 "Last-Translator:  <leo@costela.net>\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -25,31 +25,36 @@ msgstr ""
 "#-#-#-#-#  pt_BR.po (PACKAGE VERSION)  #-#-#-#-#\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: awayonlock.c:61
+#: awayonlock.c:62
 msgid "Failed to get a DBus connection."
 msgstr "Falha ao conseguir uma conexão DBus"
 
-#: awayonlock.c:77
+#: awayonlock.c:78 awayonlock.c:110
 msgid "Failed to create a DBus Proxy."
 msgstr "Falha ao criar um Proxy DBus"
 
-#: awayonlock.c:157
+#: awayonlock.c:190
 msgid "Away-on-lock"
 msgstr ""
 
-#: awayonlock.c:158
-msgid "Sets you as away when your screensaver is activated"
+#: awayonlock.c:191
+#, fuzzy
+msgid "Changes your status when your screensaver gets activated"
 msgstr "Define status como ausente quando o salva-tela é ativado"
 
-#: awayonlock.c:159
+#: awayonlock.c:192
 msgid ""
-"This plugin sets your status to the default away status whenever your "
-"screensaver gets activated."
+"This plugin changes your status to a preselected saved status or the default "
+"away status whenever your screensaver gets activated. It doesn't interfere "
+"if you're already marked as auto-away and can also avoid changing your "
+"status if you've manually marked yourself as any non-available status."
 msgstr ""
-"Este plugin define o status atual como o status ausente padrão quando o "
-"salva-tela é ativado"
+"Este plugin altera seu status para um status ausente pre-selecionado ou para "
+"o status ausente padrão quando o salva-tela é ativado. Ele não interfere caso "
+"você já esteja marcado como auto-ausente e pode também evitar alterar seu "
+"status caso você tenha manualmente se marcado como qualquer status não-disponível."
 
-#: awayonlock.c:160
+#: awayonlock.c:193
 msgid "Leo Antunes <leo@costela.net>"
 msgstr ""
 
@@ -64,3 +69,10 @@ msgstr "Status ausente padrão"
 #: prefs.c:65
 msgid "Activate only if available"
 msgstr "Ativar somente quando disponível"
+
+#~ msgid ""
+#~ "This plugin sets your status to the default away status whenever your "
+#~ "screensaver gets activated."
+#~ msgstr ""
+#~ "Este plugin define o status atual como o status ausente padrão quando o "
+#~ "salva-tela é ativado"
