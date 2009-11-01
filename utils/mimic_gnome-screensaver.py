@@ -2,6 +2,8 @@
 
 """
 incredibly dirty hack to test away-on-lock
+if gnome-screensaver is already running this wont work (it wont be able
+to pretend to be gnome-screensaver)
 """
 
 import dbus, dbus.service, gobject
@@ -17,7 +19,7 @@ class Test(dbus.service.Object):
 	x = dbus.Boolean(1);
 
 	@dbus.service.signal(dbus_interface='org.gnome.ScreenSaver', signature='b')
-	def SessionIdleChanged(self, y):
+	def ActiveChanged(self, y):
 		print "emmitting...", repr(y)
 		return True
 
@@ -27,7 +29,7 @@ app = gobject.MainLoop()
 
 t = Test('/org/gnome/ScreenSaver')
 gobject.timeout_add(   1, t.ActiveChanged, dbus.Boolean(1))
-gobject.timeout_add(2000, t.ActiveChanged, dbus.Boolean(0))
-gobject.timeout_add(2001, app.quit)
+gobject.timeout_add(5000, t.ActiveChanged, dbus.Boolean(0))
+gobject.timeout_add(5001, app.quit)
 
 app.run()

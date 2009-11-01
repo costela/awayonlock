@@ -55,6 +55,13 @@ static gboolean plugin_load(PurplePlugin *plugin) {
 
 	purple_debug(PURPLE_DEBUG_INFO, PACKAGE, N_("plugin_load called\n"));
 
+	if(purple_prefs_get_int(AWAYONLOCK_PREF_OLD_STATUS) != 0) {
+		PurpleSavedStatus *status_saved = purple_savedstatus_find_by_creation_time((time_t)purple_prefs_get_int(AWAYONLOCK_PREF_OLD_STATUS));
+		purple_debug(PURPLE_DEBUG_INFO, PACKAGE, N_("stale status '%s' located, restoring and clearing\n"), purple_savedstatus_get_title(status_saved));
+		purple_savedstatus_activate(status_saved);
+		purple_prefs_set_int(AWAYONLOCK_PREF_OLD_STATUS, 0);
+	}
+
 	dbus_conn = dbus_g_bus_get(DBUS_BUS_SESSION, &error);
 
 	if(dbus_conn == NULL) {
@@ -194,6 +201,7 @@ static void init_plugin(PurplePlugin *plugin)
 
 	purple_prefs_add_none(AWAYONLOCK_PREF_ROOT);
 	purple_prefs_add_string(AWAYONLOCK_PREF_STATUS, NULL);
+	purple_prefs_add_int(AWAYONLOCK_PREF_OLD_STATUS, 0);
 	purple_prefs_add_bool(AWAYONLOCK_PREF_AVAILABLE_ONLY, 0);
 }
 

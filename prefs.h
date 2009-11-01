@@ -27,6 +27,7 @@
 
 #define AWAYONLOCK_PREF_ROOT "/plugins/core/awayonlock"
 #define AWAYONLOCK_PREF_STATUS "/plugins/core/awayonlock/status"
+#define AWAYONLOCK_PREF_OLD_STATUS "/plugins/core/awayonlock/old_status"
 #define AWAYONLOCK_PREF_AVAILABLE_ONLY "/plugins/core/awayonlock/available_only"
 
 PurplePluginPrefFrame* get_prefs_frame(PurplePlugin*);

@@ -28,12 +28,10 @@
 #include "callback.h"
 #include "prefs.h"
 
-static PurpleSavedStatus *status_saved = NULL;
-
 void awayonlock_idle_changed_callback(DBusGProxy *proxy, gboolean screensaver_status, gpointer data) {
 	purple_debug(PURPLE_DEBUG_INFO, PACKAGE, N_("got message from screensaver: active=%u\n"), screensaver_status);
 
-	PurpleSavedStatus *status_idle;
+	PurpleSavedStatus *status_idle, *status_saved;
 
 	const char *awayonlock_savedstatus = purple_prefs_get_string(AWAYONLOCK_PREF_STATUS);
 	if(g_strcmp0(awayonlock_savedstatus, "") == 0) {
@@ -48,14 +46,15 @@ void awayonlock_idle_changed_callback(DBusGProxy *proxy, gboolean screensaver_st
 	PurpleSavedStatus *status_current = purple_savedstatus_get_current();
 
 	if(screensaver_status && ! purple_savedstatus_is_idleaway() && ((!available_only && purple_savedstatus_get_type(status_current) != PURPLE_STATUS_OFFLINE && purple_savedstatus_get_type(status_current) != PURPLE_STATUS_INVISIBLE) || purple_savedstatus_get_type(status_current) == PURPLE_STATUS_AVAILABLE)) {
-		status_saved = status_current;
-		purple_debug(PURPLE_DEBUG_INFO, PACKAGE, N_("setting status as '%s' and storing '%s'\n"), purple_savedstatus_get_title(status_idle), purple_savedstatus_get_title(status_saved));
+		purple_prefs_set_int(AWAYONLOCK_PREF_OLD_STATUS, (int)purple_savedstatus_get_creation_time(status_current));
+		purple_debug(PURPLE_DEBUG_INFO, PACKAGE, N_("setting status as '%s' and storing '%s'\n"), purple_savedstatus_get_title(status_idle), purple_savedstatus_get_title(status_current));
 		purple_savedstatus_activate(status_idle);
 	}
 	else if (!screensaver_status && status_saved != NULL && status_saved != status_idle) {
+		status_saved = purple_savedstatus_find_by_creation_time((time_t)purple_prefs_get_int(AWAYONLOCK_PREF_OLD_STATUS));
 		purple_debug(PURPLE_DEBUG_INFO, PACKAGE, N_("restoring status '%s'\n"), purple_savedstatus_get_title(status_saved));
 		purple_savedstatus_activate(status_saved);
-		status_saved = NULL;
+		purple_prefs_set_int(AWAYONLOCK_PREF_OLD_STATUS, 0);
 	}
 	else {
 		purple_debug(PURPLE_DEBUG_INFO, PACKAGE, N_("ignoring...\n"));
