@@ -20,7 +20,7 @@
 
 #define PURPLE_PLUGINS
 
-#define AWAYONLOCK_VERSION "0.4"
+#define AWAYONLOCK_VERSION "0.5.1"
 #define AWAYONLOCK_PLUGIN_ID "core-costela-awayonlock"
 
 #include <dbus/dbus-glib.h>
