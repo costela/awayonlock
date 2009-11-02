@@ -1,3 +1,7 @@
+Version 0.5.1 (2009-11-02):
+
+	- fix stupid error on coming back from idle
+
 Version 0.5 (2009-11-01):
 
 	- store changed status as pref and restore at startup if it exists:
