@@ -1,0 +1,19 @@
+Installation:
+-------------
+
+$ cmake
+$ make
+
+Or, for an out of source build:
+
+$ cd [path to build-dir]
+$ cmake [path to source]
+$ make
+
+Optional:
+
+# make install
+
+Another option is copying the resulting libawayonlock.so file to your
+~/.purple/plugins directory, in which case i18n won't work, but it
+doesn't need root privileges.
