@@ -1,7 +1,10 @@
 Installation:
 -------------
 
-$ cmake
+You'll need headers for libpurple, glib and dbus-glib. Optionally also 
+gettext. After that it's just a matter of:
+
+$ cmake .
 $ make
 
 Or, for an out of source build:
