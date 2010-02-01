@@ -1,6 +1,7 @@
-Version 0.? (??-??-??):
+Version 0.5.2 (2010-02-01):
 
 	- added an INSTALL file by popular request
+	- use LIBPURPLE_LIBDIR in install target
 
 Version 0.5.1 (2009-11-02):
 
