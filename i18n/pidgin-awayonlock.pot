@@ -53,5 +53,5 @@ msgid "Default away status"
 msgstr ""
 
 #: prefs.c:65
-msgid "Activate only if available"
+msgid "Activate only if current status set to available"
 msgstr ""

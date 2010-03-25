@@ -67,8 +67,8 @@ msgid "Default away status"
 msgstr "Status ausente padrão"
 
 #: prefs.c:65
-msgid "Activate only if available"
-msgstr "Ativar somente quando disponível"
+msgid "Activate only if current status set to available"
+msgstr "Ativar somente quando o status atual for disponível"
 
 #~ msgid ""
 #~ "This plugin sets your status to the default away status whenever your "

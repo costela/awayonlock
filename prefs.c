@@ -62,7 +62,7 @@ PurplePluginPrefFrame *get_prefs_frame(PurplePlugin *plugin) {
 	purple_plugin_pref_frame_add(frame, ppref);
 	g_list_free(statuses);
 
-	ppref = purple_plugin_pref_new_with_name_and_label(AWAYONLOCK_PREF_AVAILABLE_ONLY, _("Activate only if available"));
+	ppref = purple_plugin_pref_new_with_name_and_label(AWAYONLOCK_PREF_AVAILABLE_ONLY, _("Activate only if current status set to available"));
 	purple_plugin_pref_frame_add(frame, ppref);
 
 	return frame;
