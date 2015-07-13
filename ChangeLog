@@ -1,6 +1,7 @@
-Version 0.? (????-??-??):
+Version 0.6 (2015-07-13):
 
 	- clarify prefs label regarding activation while available
+	- add support for MATE screensaver (thanks Ingo Schaefer)
 
 Version 0.5.2 (2010-02-01):
 
