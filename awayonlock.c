@@ -48,7 +48,8 @@ awayonlock_get_handle(void)
 
 static gboolean plugin_load(PurplePlugin *plugin) {
 	DBusGProxy *dbus_proxy_gnome = NULL;
-        DBusGProxy *dbus_proxy_mate = NULL;
+	DBusGProxy *dbus_proxy_mate = NULL;
+	DBusGProxy *dbus_proxy_cinnamon = NULL;
 	DBusGProxy *dbus_proxy = NULL;
 	GError *error = NULL;
 
@@ -135,6 +136,38 @@ static gboolean plugin_load(PurplePlugin *plugin) {
 	/*
 	 * END Mate-screensaver specific stuff
 	 */
+	 	/*
+	 * Cinnamon-screensaver specific stuff
+	 */
+	dbus_proxy_cinnamon = dbus_g_proxy_new_for_name( dbus_conn,
+			"org.cinnamon.ScreenSaver",
+			"/org/cinnamon/ScreenSaver",
+			"org.cinnamon.ScreenSaver"
+			);
+
+	if(dbus_proxy_cinnamon == NULL) {
+		purple_debug(PURPLE_DEBUG_ERROR, PACKAGE, N_("failed to get DBus proxy\n"));
+		purple_notify_error(plugin, "Away-on-lock", _("Failed to create a DBus Proxy."), NULL);
+		dbus_g_connection_unref(dbus_conn);
+		return FALSE;
+	}
+
+	dbus_g_proxy_add_signal( dbus_proxy_cinnamon,
+			"ActiveChanged",
+			G_TYPE_BOOLEAN,
+			G_TYPE_INVALID
+			);
+
+	dbus_g_proxy_connect_signal( dbus_proxy_cinnamon,
+			"ActiveChanged",
+			G_CALLBACK(awayonlock_idle_changed_callback),
+			NULL,
+			NULL
+			);
+	/*
+	 * END Cinnamon-screensaver specific stuff
+	 */
+	 
 	/*
 	 * freedesktop stuff
 	 */
